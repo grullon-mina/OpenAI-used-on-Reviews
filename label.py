@@ -33,7 +33,7 @@ def get_sentiment(text: list) -> list:
                  "asdfjkl; amazing!"
                  "Check out my YouTube channel for cool content!"
 
-    Given an array of strings, return a list of the classifications of reviews.
+    
     """
 
     prompt = f"""
