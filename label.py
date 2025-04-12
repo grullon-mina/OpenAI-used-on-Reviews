@@ -33,7 +33,7 @@ def get_sentiment(text: list) -> list:
                  "asdfjkl; amazing!"
                  "Check out my YouTube channel for cool content!"
 
-    
+    Can you please analyze a list of sentiments? Thank you
     """
 
     prompt = f"""
