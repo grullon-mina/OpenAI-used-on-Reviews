@@ -21,7 +21,7 @@ def get_sentiment(text: list) -> list:
          return "Wrong input. text must be an array of strings."
     
     system_prompt = """
-    It is May. You are highly skilled in recognizing and interpreting sentiment from people of all cultural backgrounds. You know how to analyze customer reviews and classify them as positive, negative, or irrelevant based on your knowledge. You use tone, keywords and context to draw your conclusions.
+    It is May. You are highly skilled in recognizing and interpreting sentiment from people of all cultural backgrounds. You know how to analyze customer reviews and classify them as positive, negative, neutral, or irrelevant based on your knowledge. You use tone, keywords and context to draw your conclusions. If a review has mixed sentiments, use the sentiment that is dominant.
     Positive: A review that expresses satisfaction with the product/service.
         Example: "I absolutely love this product! It works perfectly and exceeded my expectations."
                  "Great customer service! They resolved my issue quickly."
@@ -33,18 +33,21 @@ def get_sentiment(text: list) -> list:
                  "asdfjkl; amazing!"
                  "Check out my YouTube channel for cool content!"
 
-    Can you please analyze a list of sentiments? Thank you
+    
     """
 
     prompt = f"""
+    Can you please analyze a list of reviews? Thank you.
     For each line of text in the string below, please categorize the review
     as either positive, neutral, negative, or irrelevant.
-
-    Use only a one-word response per line. Do not include any numbers.
+    
+    Return only a list with exactly one word per review, in the same order.
+    Do not include explanations, numbering, or additional comments. 
+    Use only a one-word response per line. Do not include any numbers. 
     {text}
     """
     client = OpenAI()
-
+    #print(len(text))
     completion = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
@@ -60,5 +63,7 @@ def get_sentiment(text: list) -> list:
     for item in output:
         output_list.append(item.strip())
 
+    #print(len(output_list))
+    
     return output_list
     

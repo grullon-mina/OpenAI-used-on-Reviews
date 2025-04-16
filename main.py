@@ -6,7 +6,13 @@ import json
 
 def run(filepath: str):
     """
-    INSERT DOCSTRING HERE
+    Creates a bar graph analyzing reviews given a json data file and classifys them as positive, negative, neutral, or irrelevant.
+
+    Args:
+    A json file.
+
+    Returns:
+    A list of sentiments.
     """
     # open the json object
     with open(filepath) as j:
